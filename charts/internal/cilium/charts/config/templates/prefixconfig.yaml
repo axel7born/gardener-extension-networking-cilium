@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: label-prefix-conf
+  namespace: {{ .Release.Namespace }}
+data:
+  label-prefix: |
+    {
+    "version": 1,
+    "valid-prefixes": [
+        {
+            "prefix": "io\\.kubernetes",
+            "source": "k8s",
+            "invert": true
+        },
+        {
+            "prefix": "kubernetes\\.io",
+            "source": "k8s",
+            "invert": true
+        },
+        {
+          "prefix": "*",
+          "source": "reserved"
+        },
+        {
+          "prefix": "io\\.kubernetes.pod\\.namespace",
+          "source": "any"
+        },
+        {
+          "prefix": "io\\.cilium\\.k8s\\.namespace\\.labels",
+          "source": "any"
+        },
+        {
+          "prefix":  "app\\.kubernetes\\.io",
+          "source": "any"
+        }
+    ]
+    }
